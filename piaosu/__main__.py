@@ -16,7 +16,23 @@ from piaosu.renamer import archive_rename_invoices
 from piaosu.service import process_invoices
 
 
+def _configure_stdio() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if not callable(reconfigure):
+            continue
+        enc = (getattr(stream, "encoding", None) or "").lower()
+        try:
+            if not stream.isatty() or enc in {"cp1252", "ascii", "ansi_x3.4-1968", ""}:
+                reconfigure(encoding="utf-8", errors="replace")
+            else:
+                reconfigure(errors="replace")
+        except Exception:
+            pass
+
+
 def main(argv: list[str] | None = None) -> int:
+    _configure_stdio()
     parser = argparse.ArgumentParser(
         prog="piaosu",
         description=f"{PRODUCT_NAME} ({PRODUCT_EN}) {PRODUCT_VERSION} — 纯离线数电票与传统票据报销引擎",
@@ -122,7 +138,8 @@ def _scan(args: argparse.Namespace) -> int:
             "archived": archived_info,
             "records": [r.to_dict() for r in records],
         }
-        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        use_ascii = (getattr(sys.stdout, "encoding", None) or "").lower().replace("-", "") != "utf8"
+        print(json.dumps(payload, ensure_ascii=use_ascii, indent=2))
         return 0
 
     print(
