@@ -1,0 +1,13 @@
+{
+  "sheet": "费用报销单",
+  "start_row": 5,
+  "columns": {
+    "issue_date": "A",
+    "invoice_number": "B",
+    "seller_name": "C",
+    "item_summary": "D",
+    "total_amount": "E",
+    "tax_amount": "F",
+    "remark": "G"
+  }
+}

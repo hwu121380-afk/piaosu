@@ -1,0 +1,32 @@
+#include <winver.h>
+
+1 24 "piaosu.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,2,0,0
+ PRODUCTVERSION 0,2,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "CompanyName", "PiaoSu Contributors"
+            VALUE "FileDescription", "PiaoSu Offline E-Invoice Reimbursement Engine"
+            VALUE "FileVersion", "0.2.0.0"
+            VALUE "InternalName", "piaosu.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2026 PiaoSu Contributors (MIT License)"
+            VALUE "OriginalFilename", "piaosu.exe"
+            VALUE "ProductName", "PiaoSu"
+            VALUE "ProductVersion", "0.2.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END

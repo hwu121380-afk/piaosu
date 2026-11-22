@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "piaosu"
+version = "0.2.0"
+description = "纯离线中文数电票与传统票据报销引擎（XML/OFD/PDF 双通道解析 + 跨月查重台账 + 模板填表 + A4 拼版打印）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "openpyxl>=3.1",
+    "pymupdf>=1.23",
+    "pypdf>=4.0",
+]
+
+[project.optional-dependencies]
+ocr = [
+    "rapidocr-onnxruntime>=1.3",
+    "Pillow>=10.0",
+]
+
+[project.scripts]
+piaosu = "piaosu.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["piaosu*"]
